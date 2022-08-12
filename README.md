@@ -22,3 +22,38 @@ There are three parts -
 ## Syntax
 I love the syntax of C++, C#, Java and Javascript. I also like the simplicity of Python.
 So, I decided to make the syntax a combination of those.
+
+### Data Types
+Yo has support for all those Data types you can see in the languages mention above.
+
+```
+10                            // This is a number
+'Hello world'                 // This is a String. Strings must be inside single quotation. 
+true                          // This is a boolean value
+[1, 2, 3]                     // This is an Array
+{ name: 'Yo', age: '1 Day' }  // This is an Object
+
+```
+
+### Variable Declaration
+To declare a variable, you need to use the keyword `#` - 
+
+```
+#a = 10
+#b = 20
+```
+
+Remember, Yo is very sensitive about spaces at this moment. So you must put those two spaces, before and after the equal(=) sign.
+
+You can also declare constants. To do this, you need to use the keyword `c#`
+
+```
+c#SuperImportantVal = 'A constant value'
+```
+
+To update the value of a variable, you can simply write this - 
+
+```
+#a = 'Hello'
+a = 'Hello world'
+```
