@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -11,22 +12,26 @@
 
 <script>
 	function compile() {
+	const startingTime = +new Date()
+	
     	const input = document.getElementById('input').value
     	const output = document.getElementById('output')
         output.innerHTML = ''
-        output.innerHTML += '<p>Compiling... </p>'
+        output.innerHTML += '<b>Compiling... </b>'
         output.innerHTML += '<p>-----------------------------</p>'
         
         var script  = ``
         const lines = input.split('\n')
         for(const line of lines) {
         	if(line.match(/print '([^']*)'/g)) {
-            	script += `output.innerHTML += "${line}".replace(/print '([^']*)'/g, '$1') \n`
-            } else if(line.match(/#([a-z A-Z 0-9]) = (.+)/g)) {
+            	script += `output.innerHTML += "${line}".replace(/print '([^']*)'/g, '<p>$1</p>') \n`
+            } else if(line.match(/print ([^']*)/g)) {
+            	script += `output.innerHTML += '<p>' + ${line.replace('print ', '')} + '</p>' \n`
+            } else if(line.match(/^#([a-z A-Z 0-9]) = (.+)$/g)) {
             	line.replace(/#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `var ${p1} = ${p2} \n`
                 })
-            } else if(line.match(/c#([a-z A-Z 0-9]) = (.+)/g)) {
+            } else if(line.match(/^c#([a-z A-Z 0-9]) = (.+)$/g)) {
             	line.replace(/c#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `const ${p1} = ${p2} \n`
                 })
@@ -39,12 +44,21 @@
                 	script += `if(${p1} ${p2} ${p3}) { \n`
                 })
 
-	    } else if(line == ')') {
-            	script += '}'
-            }
+	      } else if(line == ')') {
+            	script += '} \n'
+         
+        } else if(line == ') else (') {
+            script += '} else { \n'
+        }
+        
         }
         console.log(script)
         eval(script)
+        
+        const endingTime = +new Date()
+        
+        output.innerHTML += '<p></p>-----------</p>'
+        output.innerHTML += '<b>Compiling finished in: ' + (endingTime - startingTime) + 'ms</b>'
     }
 </script>
 
