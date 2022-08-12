@@ -35,6 +35,16 @@ true                          // This is a boolean value
 
 ```
 
+### Mathematical Operations
+You can expect the most basic stuffs here only. So, Yo offers you all those basic operations -
+
+```
+1 + 1
+2 - 1
+5 * 6
+8 / 2
+```
+
 ### Variable Declaration
 To declare a variable, you need to use the keyword `#` - 
 
