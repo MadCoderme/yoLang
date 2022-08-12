@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<textarea style="height:200px;width:500px" id="input"></textarea>
+<button onclick="compile()">Compile</button>
+
+<div style="height:300px;width:400px;background:#f2f2f2;margin-top:20px;padding:10px" id="output">
+</div>
+
+<script>
+	function compile() {
+    	const input = document.getElementById('input').value
+    	const output = document.getElementById('output')
+        output.innerHTML = ''
+        output.innerHTML += '<p>Compiling... </p>'
+        output.innerHTML += '<p>-----------------------------</p>'
+        
+        var script  = ``
+        const lines = input.split('\n')
+        for(const line of lines) {
+        	if(line.match(/print '([^']*)'/g)) {
+            	script += `output.innerHTML += "${line}".replace(/print '([^']*)'/g, '$1') \n`
+            } else if(line.match(/#([a-z A-Z 0-9]) = (.+)/g)) {
+            	line.replace(/#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+                	script += `var ${p1} = ${p2} \n`
+                })
+            } else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
+				        line.replace(/if (.+) (>|<|==|!=) (.+) [(]/g, (match, p1, p2, p3, offset, string) => {
+                	script += `if(${p1} ${p2} ${p3}) { \n`
+                })
+
+			  } else if(line == ')') {
+            	script += '}'
+            }
+        }
+        console.log(script)
+        eval(script)
+    }
+</script>
+
+</body>
+</html>
