@@ -26,12 +26,20 @@
             	line.replace(/#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `var ${p1} = ${p2} \n`
                 })
-            } else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
+            } else if(line.match(/c#([a-z A-Z 0-9]) = (.+)/g)) {
+            	line.replace(/c#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+                	script += `const ${p1} = ${p2} \n`
+                })
+            } else if(line.match(/([a-z A-Z 0-9]) = (.+)/g)) {
+            	line.replace(/([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+                	script += `${p1} = ${p2} \n`
+                })
+            }  else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
 				        line.replace(/if (.+) (>|<|==|!=) (.+) [(]/g, (match, p1, p2, p3, offset, string) => {
                 	script += `if(${p1} ${p2} ${p3}) { \n`
                 })
 
-			  } else if(line == ')') {
+	    } else if(line == ')') {
             	script += '}'
             }
         }
