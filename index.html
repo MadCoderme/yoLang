@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html>
+<html style="font-family: Arial">
 <body>
 
 
 <textarea style="height:200px;width:500px" id="input"></textarea>
 <button onclick="compile()">Compile</button>
 
-<div style="height:300px;width:400px;background:#f2f2f2;margin-top:20px;padding:10px" id="output">
+<div style="height:300px;width:400px;background:#000;color:#fff;margin-top:20px;padding:10px;border-radius:10px" id="output">
 </div>
 
 <script>
@@ -23,6 +23,15 @@
         var script  = ``
         const lines = input.split('\n')
         for(const line of lines) {
+        	
+            line.replace(/^([a-z A-Z 0-9]*)[[]]$/g, (match, p1, offset, string) => {
+                script += `${p1}()\n`
+            })
+            
+            line.replace(/^([a-z A-Z 0-9]*)\[(.*)\]$/g, (match, p1, p2, offset, string) => {
+                script += `${p1}(${p2})\n`
+            })
+            
         	if(line.match(/print '([^']*)'/g)) {
             	script += `output.innerHTML += "${line}".replace(/print '([^']*)'/g, '<p>$1</p>') \n`
             } else if(line.match(/print ([^']*)/g)) {
@@ -39,11 +48,21 @@
             	line.replace(/([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `${p1} = ${p2} \n`
                 })
+            } else if(line.match(/^f# ([a-z A-Z 0-9]*) [(]$/g)) {
+            	line.replace(/^f# ([a-z A-Z 0-9]*) [(]$/g, (match, p1, offset, string) => {
+                	script += `function ${p1}() {\n`
+                })
+            } else if(line.match(/^f# ([a-z A-Z 0-9]*) \[(.*)\] [(]$/g)) {
+            	line.replace(/^f# ([a-z A-Z 0-9]*) \[(.*)\] [(]$/g, (match, p1, p2, offset, string) => {
+                	script += `function ${p1}(${p2}) {\n`
+                })
             }  else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
 				        line.replace(/if (.+) (>|<|==|!=) (.+) [(]/g, (match, p1, p2, p3, offset, string) => {
                 	script += `if(${p1} ${p2} ${p3}) { \n`
                 })
-
+			
+          } else if(line == '(') {
+            	script += '{ \n'
 	      } else if(line == ')') {
             	script += '} \n'
          
