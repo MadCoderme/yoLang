@@ -91,7 +91,7 @@ f# sayHello[] (
 ```
 Then, you can call the function simply - 
 ```
-sayHello[]
+sayHello()
 ```
 
 Parameters can be passed between the square brackets.
@@ -101,7 +101,7 @@ f# addTwoNumbers[num1, num2] (
   return num1 + num2
 )
 
-addTwoNumbers[5, 7] //This should return 12
+addTwoNumbers(5, 7) //This should return 12
 ```
 
 
