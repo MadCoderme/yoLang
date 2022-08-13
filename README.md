@@ -16,7 +16,7 @@ Anyway, please consider this as a project to think in a new way, to get new expe
 There are three parts -
 
 - **Input TextArea:** This takes the code as input (No code formatting sadly)
-- **Output Area:** This is where the output is displayed along with compiling information. You can think this as a Console.
+- **Output Area:** This is where the output is displayed along with compiling information. You can think this as a Terminal.
 - **Compiler:** Every language needs a compiler or interpreter to translate your code to something that computer can understand. This part of the project translates the Yo code to Javascript. Yo Compiler goes line by line and converts the code to executable programme.
 
 ## Syntax
@@ -24,7 +24,7 @@ I love the syntax of C++, C#, Java and Javascript. I also like the simplicity of
 So, I decided to make the syntax a combination of those.
 
 ### Data Types
-Yo has support for all those Data types you can see in the languages mention above.
+Yo has support for all those Data types you can see in the languages mentioned above.
 
 ```
 10                            // This is a number
@@ -43,6 +43,19 @@ You can expect the most basic stuffs here only. So, Yo offers you all those basi
 2 - 1
 5 * 6
 8 / 2
+2 ** 3
+```
+Here is the reason of giving this simple thing a different section. Sometimes, if you want to perform a mathematical addition, you may end up with unexpected result like this - 
+
+```
+print 1 + 1 
+// Output: 11
+```
+This is mainly because of the compiling process. To avoid this, you should do all mathematical operations inside Parenthesis. 
+
+```
+print (1 + 1) 
+// Output: 2
 ```
 
 ### Variable Declaration
@@ -67,3 +80,47 @@ To update the value of a variable, you can simply write this -
 #a = 'Hello'
 a = 'Hello world'
 ```
+
+### Functions
+To write a function, you need to use the keyword `f#`
+
+```
+f# sayHello[] (
+  return 'hello'
+)
+```
+Then, you can call the function simply - 
+```
+sayHello[]
+```
+
+Parameters can be passed between the square brackets.
+
+```
+f# addTwoNumbers[num1, num2] (
+  return num1 + num2
+)
+
+addTwoNumbers[5, 7] //This should return 12
+```
+
+
+## Writing a Hello World Programme
+
+You can expect to be fairly easy my boy:
+
+```
+print 'Hello World!'
+```
+
+### Dive deeper
+
+Using the built in `print` function, you can display Strings in the Output terminal. If you pass a Number or any other data type, those will be automatically converted to string. For example - 
+
+```
+#testNum = 10
+#testStr = 'is Ten'
+
+print testNum + ' ' + testStr // It will print "10 is Ten"
+```
+
