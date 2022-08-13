@@ -23,15 +23,6 @@
         var script  = ``
         const lines = input.split('\n')
         for(const line of lines) {
-        	
-            line.replace(/^([a-z A-Z 0-9]*)[[]]$/g, (match, p1, offset, string) => {
-                script += `${p1}()\n`
-            })
-            
-            line.replace(/^([a-z A-Z 0-9]*)\[(.*)\]$/g, (match, p1, p2, offset, string) => {
-                script += `${p1}(${p2})\n`
-            })
-            
         	if(line.match(/print '([^']*)'/g)) {
             	script += `output.innerHTML += "${line}".replace(/print '([^']*)'/g, '<p>$1</p>') \n`
             } else if(line.match(/print ([^']*)/g)) {
@@ -61,6 +52,10 @@
                 	script += `if(${p1} ${p2} ${p3}) { \n`
                 })
 			
+          } else if(line.match(/return (.*)/g)) {
+          	line.replace(/return (.*)/g, (match, p1, offset, string) => {
+                	script += `return ${p1} \n`
+                })
           } else if(line == '(') {
             	script += '{ \n'
 	      } else if(line == ')') {
@@ -69,8 +64,10 @@
         } else if(line == ') else (') {
             script += '} else { \n'
         }
-        
+        	
         }
+        
+        
         console.log(script)
         eval(script)
         
