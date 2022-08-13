@@ -37,15 +37,15 @@
             } else if(line.match(/print ([^']*)/g)) {
             	script += `output.innerHTML += '<p>' + ${line.replace('print ', '')} + '</p>' \n`
             } else if(line.match(/^#([a-z A-Z 0-9]) = (.+)$/g)) {
-            	line.replace(/#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+            	line.replace(/#([a-z A-Z 0-9]*) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `var ${p1} = ${p2} \n`
                 })
             } else if(line.match(/^c#([a-z A-Z 0-9]) = (.+)$/g)) {
-            	line.replace(/c#([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+            	line.replace(/c#([a-z A-Z 0-9]*) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `const ${p1} = ${p2} \n`
                 })
             } else if(line.match(/([a-z A-Z 0-9]) = (.+)/g)) {
-            	line.replace(/([a-z A-Z 0-9]) = (.+)/g, (match, p1, p2, offset, string) => {
+            	line.replace(/([a-z A-Z 0-9]*) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `${p1} = ${p2} \n`
                 })
             } else if(line.match(/^f# ([a-z A-Z 0-9]*) [(]$/g)) {
