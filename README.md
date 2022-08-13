@@ -97,13 +97,38 @@ sayHello()
 Parameters can be passed between the square brackets.
 
 ```
-f# addTwoNumbers[num1, num2] (
+f# addTwoNumbers [num1, num2] (
   return num1 + num2
 )
 
 addTwoNumbers(5, 7) //This should return 12
 ```
+### Conditional Statements (If else)
+You almost can't think of a programming language without if else these days. The way to write if statement in Yo is -
 
+```
+#a = 10
+#b = 15
+
+if a > b (
+  print 'a is bigger'
+) else (
+  print 'a is smaller'
+)
+```
+Note that we are using Paranthesis instead of Curly Brackets. Also, the condition is not wrapped inside brackets. 
+
+At this moment, only the following conditions are supported - 
+
+```
+a == b
+a != b
+a > b
+a < b
+```
+So, No AND OR statements :)
+
+**Make sure you put those spaces as shown above. Yo is Space sensitive!**
 
 ## Writing a Hello World Programme
 
@@ -115,7 +140,7 @@ print 'Hello World!'
 
 ### Dive deeper
 
-Using the built in `print` function, you can display Strings in the Output terminal. If you pass a Number or any other data type, those will be automatically converted to string. For example - 
+Using the built in `print` function, you can display Strings in the Output terminal. If you pass a Number or any other data type, those will be automatically converted to string. Only in case of an Object, this will return `[object Object]` For example - 
 
 ```
 #testNum = 10
