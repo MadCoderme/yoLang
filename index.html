@@ -1,13 +1,19 @@
 
 <!DOCTYPE html>
-<html style="font-family: Arial">
+<html>
+
+<style>
+body, textarea {
+  font-family: 'Courier New', monospace;
+}
+</style>
+
 <body>
 
-
-<textarea style="height:200px;width:500px" id="input"></textarea>
+<textarea style="height:200px;width:100%" id="input"></textarea>
 <button onclick="compile()">Compile</button>
 
-<div style="height:300px;width:400px;background:#000;color:#fff;margin-top:20px;padding:10px;border-radius:10px" id="output">
+<div style="height:300px;width:97%;background:#000;color:#fff;margin-top:20px;padding:10px;border-radius:10px" id="output">
 </div>
 
 <script>
@@ -35,8 +41,8 @@
             	line.replace(/c#([a-z A-Z 0-9]*) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `const ${p1} = ${p2} \n`
                 })
-            } else if(line.match(/([a-z A-Z 0-9]) = (.+)/g)) {
-            	line.replace(/([a-z A-Z 0-9]*) = (.+)/g, (match, p1, p2, offset, string) => {
+            } else if(line.match(/^.+(\w*) = (.+)/g)) {
+            	line.replace(/^.+(\w*) = (.+)/g, (match, p1, p2, offset, string) => {
                 	script += `${p1} = ${p2} \n`
                 })
             } else if(line.match(/^f# ([a-z A-Z 0-9]*) [(]$/g)) {
@@ -47,7 +53,15 @@
             	line.replace(/^f# ([a-z A-Z 0-9]*) \[(.*)\] [(]$/g, (match, p1, p2, offset, string) => {
                 	script += `function ${p1}(${p2}) {\n`
                 })
-            }  else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
+            }  else if(line.match(/^class# ([a-z A-Z 0-9]*) [(]$/g)) {
+            	line.replace(/^class# ([a-z A-Z 0-9]*) [(]$/g, (match, p1, offset, string) => {
+                	script += `class ${p1} {\n`
+                })
+            } else if(line.match(/^m# ([a-z A-Z 0-9]*) \[(.*)\] [(]$/g)) {
+            	line.replace(/^m# ([a-z A-Z 0-9]*) \[(.*)\] [(]$/g, (match, p1, p2, offset, string) => {
+                	script += `${p1}(${p2}) {\n`
+                })
+            } else if(line.match(/if (.+) (>|<|==|!=) (.+) [(]/g)) {
 				        line.replace(/if (.+) (>|<|==|!=) (.+) [(]/g, (match, p1, p2, p3, offset, string) => {
                 	script += `if(${p1} ${p2} ${p3}) { \n`
                 })
@@ -56,6 +70,8 @@
           	line.replace(/return (.*)/g, (match, p1, offset, string) => {
                 	script += `return ${p1} \n`
                 })
+          } else if(line.trim().match(/^this.(.*)/g)) {
+          	script += line
           } else if(line == '(') {
             	script += '{ \n'
 	      } else if(line == ')') {
@@ -66,6 +82,8 @@
         }
         	
         }
+        
+        
         
         
         console.log(script)
