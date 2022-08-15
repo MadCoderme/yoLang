@@ -24,6 +24,10 @@
             const input = document.getElementById('input').value
             const output = document.getElementById('output')
 
+            output.innerHTML = ''
+            output.innerHTML += '<b>Compiling... </b>'
+            output.innerHTML += '<p>-----------------------------</p>'
+
             //keep track of time to display time taken for compiling
             const startingTime = +new Date()
             //string in which translated codes will be saved
@@ -125,7 +129,7 @@
                     
                 }
                 
-                //console.log(script)
+                console.log(script)
                 
                 //run the js code saved in the string (Using eval is not recommended due to security reasons. But It's good here :P)
                 eval(script)
