@@ -20,6 +20,10 @@
 
     <script>
         function compile() {
+            //input and output elements
+            const input = document.getElementById('input').value
+            const output = document.getElementById('output')
+
             //keep track of time to display time taken for compiling
             const startingTime = +new Date()
             //string in which translated codes will be saved
@@ -28,7 +32,7 @@
             try {
                 //split the input into separate lines to process
                 const lines = input.split('\n')
-            
+                
                 for(var line of lines) {    
 
                     //some customized methods and properties
