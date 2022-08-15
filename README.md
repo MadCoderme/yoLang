@@ -105,15 +105,15 @@ addTwoNumbers(5, 7) //This should return 12
 ```
 
 ### Classes
-To write a class, use the keyword `class#`. To declare methods, use the keyword `#m`
+To write a class, use the keyword `class#`. To declare methods, use the keyword `m#`
 
 ```
 class# Box (
-   #m constructor [color] (
+   m# constructor [color] (
       this.color = color
    )
    
-   #m getColor [] (
+   m# getColor [] (
       return this.color
    )
 )
