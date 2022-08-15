@@ -103,6 +103,29 @@ f# addTwoNumbers [num1, num2] (
 
 addTwoNumbers(5, 7) //This should return 12
 ```
+
+### Classes
+To write a class, use the keyword `class#`. To declare methods, use the keyword `#m`
+
+```
+class# Box (
+   #m constructor [color] (
+      this.color = color
+   )
+   
+   #m getColor [] (
+      return this.color
+   )
+)
+```
+
+You can use this Class as you do in JS.
+
+```
+#b = new Box('red')
+print b.getColor()
+```
+
 ### Conditional Statements (If else)
 You almost can't think of a programming language without if else these days. The way to write if statement in Yo is -
 
@@ -129,6 +152,23 @@ a < b
 So, No AND OR statements :)
 
 **Make sure you put those spaces as shown above. Yo is Space sensitive!**
+
+### Loops
+At this moment, only a `for loop` is supported. But the way to write this is different. 
+
+```
+loop i, 0, 10, 1 (
+  print i
+)
+```
+
+This should print numbers from `0` to `9`. Basically, the syntax is - 
+
+```
+loop [variable name], [starting num], [ending num], [increment value] (
+
+)
+```
 
 ## Writing a Hello World Programme
 
