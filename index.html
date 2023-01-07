@@ -13,7 +13,7 @@
 <body>
 
     <textarea style="height:200px;width:100%" id="input"></textarea>
-    <button onclick="compile()">Compile</button>
+    <button onclick="compile()">Run Program</button>
 
     <div style="height:300px;width:97%;background:#000;color:#fff;margin-top:20px;padding:10px;border-radius:10px;overflow:auto" id="output">
     </div>
@@ -25,7 +25,7 @@
             const output = document.getElementById('output')
 
             output.innerHTML = ''
-            output.innerHTML += '<b>Compiling... </b>'
+            output.innerHTML += '<b>Processing... </b>'
             output.innerHTML += '<p>-----------------------------</p>'
 
             //keep track of time to display time taken for compiling
@@ -143,7 +143,7 @@
             const endingTime = performance.now()
             
             output.innerHTML += '<p></p>-----------------------------</p>'
-            output.innerHTML += '<b>Compiling finished in: ' + (endingTime - startingTime).toFixed(2) + 'ms</b>'
+            output.innerHTML += '<b>Processing finished in: ' + (endingTime - startingTime).toFixed(2) + 'ms</b>'
         }
     </script>
 
