@@ -29,7 +29,7 @@
             output.innerHTML += '<p>-----------------------------</p>'
 
             //keep track of time to display time taken for compiling
-            const startingTime = +new Date()
+            const startingTime = performance.now()
             //string in which translated codes will be saved
             var script  = ``
         
@@ -140,10 +140,10 @@
             }
                
             //track ending time and show compilation duration
-            const endingTime = +new Date()
+            const endingTime = performance.now()
             
-            output.innerHTML += '<p></p>-----------</p>'
-            output.innerHTML += '<b>Compiling finished in: ' + (endingTime - startingTime) + 'ms</b>'
+            output.innerHTML += '<p></p>-----------------------------</p>'
+            output.innerHTML += '<b>Compiling finished in: ' + (endingTime - startingTime).toFixed(2) + 'ms</b>'
         }
     </script>
 
