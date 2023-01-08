@@ -63,10 +63,10 @@
                             script += `const ${p1} = ${p2} \n`
                         })
 
-                    } else if(line.trim().match(/^(\w*) = (.+)/g)) {
+                    }  else if(line.trim().match(/^(\w*)(=|\+=|-=)(.+)/g)) {
                         //update variables
-                        line.trim().replace(/^(\w*) = (.+)/g, (match, p1, p2, offset, string) => {
-                            script += `${p1} = ${p2} \n`
+                        line.trim().replace(/^(\w*)(=|\+=|-=)(.+)/g, (match, p1, p2, p3, offset, string) => {
+                            script += `${p1} ${p2} ${p3} \n`
                         })
 
                     } else if(line.match(/^f# ([a-z A-Z 0-9]*) [(]$/g)) {
