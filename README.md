@@ -1,5 +1,9 @@
-# yoLan
+# yoLang
 A very simple idea of "Programming language" written using Javascript on Web
+
+## Try It
+
+https://madcoderme.github.io/yoLang/
 
 Hi fellow **engineers**! 👋
 
