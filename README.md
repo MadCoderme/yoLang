@@ -1,6 +1,8 @@
 # yoLang
 A very simple idea of "Programming language" written using Javascript on Web
 
+CAUTION: THIS IS NOT A REAL PROGRAMMING LANGUAGE!
+
 ## Try It
 
 https://madcoderme.github.io/yoLang/
